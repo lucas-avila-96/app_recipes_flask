@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Compartir receta{% endblock %}
+{% block content %}
+    {% if receta is none:%}
+    <h1>Registrar receta</h1>
+    <form action="{{ request.path }}" method="post">
+        <input id="userId" name="userId" type="hidden" value="{{userid}}">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control mb-3" name="nombre" placeholder="Nombre">
+        <label for="tiempo" class="form-label">Tiempo</label>
+        <input type="text" class="form-control mb-3" name="tiempo" placeholder="Tiempo">
+        <label for="elaboracion" class="form-label">Elaboracion</label>
+        <textarea class="form-control" name="elaboracion" rows="3"></textarea>
+        <input type="submit" class="d-block w-100 my-3 btn btn-primary" value="continuar">
+    </form>
+    {%else:%}
+    <h4>Agregaste {{i}} ingredientes</h4>
+    <form action="{{ url_for('add_ingredient', recetaid=receta.id, i=i)}}" method="post">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control mb-3" name="nombre" placeholder="Nombre">
+        <label for="unidad" class="form-label">Unidad de medida</label>
+        <input type="text" class="form-control mb-3" name="unidad" placeholder="Unidad">
+        <label for="cantidad" class="form-label">Cantidad</label>
+        <input type="text" class="form-control mb-3" name="cantidad" placeholder="Cantidad">
+        <input class="d-block w-100 my-3 btn btn-primary" type="submit" value="Agregar ingrediente">
+    </form>
+    <a href="{{ url_for('save_recipe') }} " class="d-block w-100 my-3 btn btn-primary">Guardar receta</a>
+
+    {%endif%}
+{% endblock %}

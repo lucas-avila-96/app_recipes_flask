@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Listar receta{% endblock %}
+{% block content %}
+    <h3 class="text-center">Lista de recetas</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Receta</th>
+                <th scope="col">Tiempo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for receta in lista %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('view_recipe', receta_id = receta.id) }}" >{{ receta.nombre}}
+                    </a>
+                </td>
+                <td>{{ receta.tiempo}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+

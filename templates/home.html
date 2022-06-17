@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+    {% if usuario is not none: %}
+        <h1>Bienvenido {{ usuario.nombre}}</h1>
+        <a href="{{ url_for('share_recipe', userid = usuario.id) }}" class="d-block w-100 my-3 btn btn-primary" role="button">Compartir receta</a>
+        <a href="{{ url_for('consult_recipe_ingredient') }}" class="d-block w-100 my-3 btn btn-primary" role="button">Consultar recetas por ingrediente</a>
+        <a href="{{ url_for('consult_recipe_time') }}" class="d-block w-100 my-3 btn btn-primary" role="button">Consultar recetas por tiempo</a>
+        <a href="{{ url_for('ranking') }}" class="d-block w-100 my-3 btn btn-primary" role="button">Ver ranking</a>
+        <a href="{{ url_for('home') }} " class="d-block w-100 my-3 btn btn-primary">volver</a>
+        {% else %}
+    <form action="{{ url_for('home') }}" method='POST'>
+        <label for="email">Correo electronico</label>
+        <input type="email" name="email" class="mb-3 form-control" placeholder="name@example.com">
+        <label for="password">Contraseña</label>
+        <input type="password" name="password" class="mb-3 form-control" placeholder="Contraseña">
+        <input class="d-block my-3 w-100 btn btn-primary" type="submit" value="Iniciar sesion">
+    </form>
+    <a href="{{ url_for('registration') }}" class="d-block w-100 my-3 btn btn-primary">Registrarme</a>
+    {% endif %}
+{% endblock %}

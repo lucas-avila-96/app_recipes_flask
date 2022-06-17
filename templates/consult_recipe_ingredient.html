@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+    <h1>Consultar recetas</h1>
+    <h3>Ingrese ingrediente</h3>
+        <form action="{{ request.path }}" method="POST">
+            <input type="search" name="nombre" class="mb-3 form-control">
+            <input class="d-block my-3 w-100 btn btn-primary" type="submit" value="Buscar">
+        </form>
+{% endblock %}
+</html>

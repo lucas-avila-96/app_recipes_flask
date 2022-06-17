@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Listar receta{% endblock %}
+{% block content %}
+    <div class="card m-3 p-3" style="max-width: 40rem;">
+        <div class="card-body">
+            <h5 class="card-title">Receta: {{receta.nombre}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Usuario: {{receta.usuario.nombre}}</h6>
+            <p class="card-text">Elaboracion: {{receta.elaboracion}}</p>
+            <h6 class="">Tiempo: {{receta.tiempo}}</h6>
+            <div class="d-flex align-items-center">
+                <h6 class="">Cantidad de mg: {{receta.cantidadmegusta}}</h6>
+                <a href="{{url_for('like', nombre=nombre)}}"
+                    class="ms-auto border border-primary border-2 rounded p-2">Me Gusta</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ingrediente</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Unidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ingrediente in receta.ingrediente %}
+                <tr>
+                    <th scope="row"></th>
+                    <td>{{ ingrediente.nombre}}</td>
+                    <td>{{ ingrediente.cantidad}}</td>
+                    <td>{{ ingrediente.unidad}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="card-footer">Fecha: {{receta.fecha}}</div>
+    </div>
+</div>
+{% endblock %}
